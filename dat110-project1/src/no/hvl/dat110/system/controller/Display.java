@@ -7,11 +7,11 @@ public class Display extends RPCStub {
 
 	private byte RPCID = 1;
 
-	public void write(String message) {
-
-		// TODO
-		// implement marshalling, call and unmarshalling for write RPC method
-
-		throw new UnsupportedOperationException(TODO.method());
+	public void write(String message) {		
+		byte[] request = RPCUtils.marshallString(RPCID, message);
+		
+		byte[] response = rpcclient.call(request);
+		
+		RPCUtils.unmarshallVoid(response);
 	}
 }
